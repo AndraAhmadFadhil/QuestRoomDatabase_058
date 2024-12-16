@@ -9,17 +9,21 @@ class LocalRepositoryMhs (
     ) : RepositoryMhs {
     override suspend fun insertMhs(mahasiswa: Mahasiswa) {
         mahasiswaDao.insertMahasiswa(mahasiswa)
-
-        //getAllMhs
-        fun getAllMhs(): Flow<List<Mahasiswa>>
-
-        //getMhs
-        fun getMhs(nim: String): Flow<Mahasiswa>
-
-        //deleteMhs
-        suspend fun deleteMhs(mahasiswa: Mahasiswa)
-
-        //updateMhs
-        suspend fun updateMhs(mahasiswa: Mahasiswa)
     }
-}
+
+    override fun getAllMhs(): Flow<List<Mahasiswa>> {
+        return mahasiswaDao.getAllMahasiswa()
+        }
+
+    override fun getMhs(nim: String): Flow<Mahasiswa> {
+        return mahasiswaDao.getMahasiswa(nim)
+        }
+
+    override suspend fun deleteMhs(mahasiswa: Mahasiswa) {
+        mahasiswaDao.deleteMahasiswa(mahasiswa)
+        }
+
+    override suspend fun updateMhs(mahasiswa: Mahasiswa) {
+        mahasiswaDao.updateMahasiswa(mahasiswa)
+        }
+    }
