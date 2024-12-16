@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.activity10.data.entity.Mahasiswa
 import com.example.activity10.repository.RepositoryMhs
 import com.example.activity10.ui.viewmodel.MahasiswaEvent
+import com.example.activity10.ui.viewmodel.toMahasiswaEntity
 import com.example.cekcek.ui.navigation.AlamatNavigasi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.SharingStarted
@@ -15,6 +16,7 @@ import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
 class DetailMhsViewModel(
     savedStateHandle: SavedStateHandle,
@@ -50,6 +52,14 @@ class DetailMhsViewModel(
                 isLoading = true,
             )
         )
+
+    fun deleteMhs() {
+        detailUiState.value.detailUiEvent.toMahasiswaEntity().let {
+            viewModelScope.launch {
+                repositoryMhs.deleteMhs(it)
+            }
+        }
+    }
 
 }
 
