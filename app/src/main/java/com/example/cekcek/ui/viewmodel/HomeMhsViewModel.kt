@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.activity10.data.entity.Mahasiswa
 import com.example.activity10.repository.RepositoryMhs
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
@@ -25,6 +26,7 @@ class HomeMhsViewModel(
         }
         .onStart {
             emit(HomeUiState(isLoading = true))
+            delay(900)
         }
         .catch {
             emit(
@@ -45,7 +47,6 @@ class HomeMhsViewModel(
 
 
 }
-
 
 data class HomeUiState (
     val listMhs: List<Mahasiswa> = listOf(),
