@@ -8,6 +8,7 @@ import com.example.activity10.repository.RepositoryMhs
 import com.example.activity10.ui.viewmodel.MahasiswaEvent
 import com.example.activity10.ui.viewmodel.toMahasiswaEntity
 import com.example.cekcek.ui.navigation.AlamatNavigasi
+import com.example.cekcek.ui.navigation.DestinasiDetail
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -22,7 +23,7 @@ class DetailMhsViewModel(
     savedStateHandle: SavedStateHandle,
     private val repositoryMhs: RepositoryMhs,
 ) : ViewModel() {
-    private val _nim: String = checkNotNull(savedStateHandle[AlamatNavigasi.DestinasiDetail.NIM])
+    private val _nim: String = checkNotNull(savedStateHandle[DestinasiDetail.NIM])
 
     val detailUiState: StateFlow<DetailUiState> = repositoryMhs.getMhs(_nim)
         .filterNotNull()

@@ -13,6 +13,7 @@ import com.example.activity10.ui.viewmodel.MahasiswaEvent
 import com.example.activity10.ui.viewmodel.MhsUIState
 import com.example.activity10.ui.viewmodel.toMahasiswaEntity
 import com.example.cekcek.ui.navigation.AlamatNavigasi
+import com.example.cekcek.ui.navigation.DestinasiUpdate
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -23,7 +24,7 @@ class UpdateMhsViewModel(
 ) : ViewModel() {
     var updateUIState by mutableStateOf(MhsUIState())
         private set
-    private val _nim: String = checkNotNull(savedStateHandle[AlamatNavigasi.DestinasiUpdate.NIM])
+    private val _nim: String = checkNotNull(savedStateHandle[DestinasiUpdate.NIM])
 
 
     init {

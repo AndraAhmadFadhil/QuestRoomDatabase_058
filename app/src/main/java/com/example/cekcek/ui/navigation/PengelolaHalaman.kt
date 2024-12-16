@@ -21,13 +21,13 @@ fun PengelolaHalaman(
     navController: NavHostController = rememberNavController(),
     modifier: Modifier = Modifier
 ) {
-    NavHost(navController = navController, startDestination = AlamatNavigasi.DestinasiHome.route) {
+    NavHost(navController = navController, startDestination = DestinasiHome.route) {
         composable(
-            route = AlamatNavigasi.DestinasiHome.route
+            route = DestinasiHome.route
         ) {
             HomeMhsView(
                 onDetailClick = { nim ->
-                    navController.navigate("${AlamatNavigasi.DestinasiDetail.route}/$nim")
+                    navController.navigate("${DestinasiDetail.route}/$nim")
                     println(
                         "PengelolaHalaman: nim = $nim"
                     )
@@ -54,21 +54,21 @@ fun PengelolaHalaman(
         }
 
         composable(
-            AlamatNavigasi.DestinasiDetail.routesWithArg,
+            DestinasiDetail.routesWithArg,
             arguments = listOf(
-                navArgument(AlamatNavigasi.DestinasiDetail.NIM) {
+                navArgument(DestinasiDetail.NIM) {
                     type = NavType.StringType
                 }
             )
         ) {
-            val nim = it.arguments?.getString(AlamatNavigasi.DestinasiDetail.NIM)
+            val nim = it.arguments?.getString(DestinasiDetail.NIM)
             nim?.let { nim ->
                 DetailMhsView(
                     onBack = {
                         navController.popBackStack()
                     },
                     onEditClick = {
-                        navController.navigate("${AlamatNavigasi.DestinasiUpdate.route}/$it")
+                        navController.navigate("${DestinasiUpdate.route}/$it")
                     },
                     modifier = modifier,
                     onDeleteClick = {
@@ -79,9 +79,9 @@ fun PengelolaHalaman(
         }
 
         composable(
-            AlamatNavigasi.DestinasiUpdate.routesWithArg,
+            DestinasiUpdate.routesWithArg,
             arguments = listOf(
-                navArgument(AlamatNavigasi.DestinasiUpdate.NIM) {
+                navArgument(DestinasiUpdate.NIM) {
                     type = NavType.StringType
                 }
             )
