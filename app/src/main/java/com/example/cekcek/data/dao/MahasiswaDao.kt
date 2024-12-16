@@ -1,9 +1,12 @@
 package com.example.activity10.data.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.Query
 import androidx.room.Update
 import com.example.activity10.data.entity.Mahasiswa
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MahasiswaDao {
@@ -11,6 +14,21 @@ interface MahasiswaDao {
     suspend fun insertMahasiswa(
         mahasiswa: Mahasiswa
     )
+
+    @Query("SELECT * FROM mahasiswa ORDER BY nama ASC")
+    fun getAllMahasiswa(): Flow<List<Mahasiswa>>
+
+    //getMahasiswa
+    @Query("SELECT * FROM mahasiswa WHERE nim = :nim")
+    fun getMahasiswa (nim: String): Flow<Mahasiswa>
+
+    //deleteMahasiswa
+    @Delete
+    suspend fun deleteMahasiswa(mahasiswa: Mahasiswa)
+
+    @Update
+    suspend fun updateMahasiswa(mahasiswa: Mahasiswa)
+
 
 //    @Update
 //    suspend fun updateMahasiswa(
